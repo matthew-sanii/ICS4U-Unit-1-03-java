@@ -13,7 +13,6 @@ import java.util.Scanner;
 */
 
 final class Microwave {
-
     /**
     * Prevent instantiation.
     * Throw an exception IllegalStateException.
@@ -35,21 +34,51 @@ final class Microwave {
 
     public static void main(final String[] args) {
         final Scanner food = new Scanner(System.in);
-
-        System.out.print("What are you microwaving? ");
+        int time = 0;
+        int minutes = 0;
+        double heat = 0;
+        System.out.print("What are you microwaving(soup, pizza, or sub)? ");
 
         String choice = food.nextLine();
-        if (choice.toLowerCase() == "soup" || choice.toLowerCase() == "pizza" || choice.toLowerCase() == "sub") {
+        if (choice.toLowerCase().equals("soup") || choice.toLowerCase().equals("pizza") || choice.toLowerCase().equals("sub")) {
             System.out.print("How many " + choice.toLowerCase() + " are you cooking?(max 3) "); 
             int amount = food.nextInt();
-            if (amount == 1) {
-                
+            if (amount > 3) {
+                System.out.println("Must be 3 or less.");
+            }
+            else if (amount < 1) {
+                System.out.println("Must be greater than 1.");
+            }
+            else {
+                if (choice.toLowerCase().equals("soup")) {
+                    time = 105;
+                }
+                else if (choice.toLowerCase().equals("pizza")) {
+                    time = 45;
+                }
+                else {
+                    time = 60;
+                }
+                if (amount == 2) {
+                    heat = 1.5;
+                }
+                else if (amount == 3) {
+                    heat = 2;
+                }
+                else {
+                    heat = 1;
+                }
+                double cooking = heat * time;
+                while (cooking > 60){
+                minutes = minutes + 1;
+                cooking = cooking - 60;
 }
-        }
+                System.out.println("it will take " + minutes + " minutes and " + cooking + " seconds to cook " + amount + " " + choice.toLowerCase() + "(s).");
+            }
+            }
         else {
             System.out.println("that isn't a viable option.");
         }
-        System.out.println("you chose " + choice + ".");
         System.out.println("\nDone.");
-    }
+}
 }

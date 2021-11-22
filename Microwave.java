@@ -41,11 +41,14 @@ final class Microwave {
         String choice = food.nextLine();
         if (choice.toLowerCase() == "soup" || choice.toLowerCase() == "pizza" || choice.toLowerCase() == "sub") {
             System.out.print("How many " + choice.toLowerCase() + " are you cooking?(max 3) "); 
-            float amount = food.nextLine();
+            int amount = food.nextInt();
+            if (amount == 1) {
+                
+}
         }
         else {
-            System.
-}
+            System.out.println("that isn't a viable option.");
+        }
         System.out.println("you chose " + choice + ".");
         System.out.println("\nDone.");
     }

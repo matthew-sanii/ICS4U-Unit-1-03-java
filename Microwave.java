@@ -1,5 +1,5 @@
 /*
-* The Microwave program shows how to 
+* The Microwave program shows how to
 *
 * @author  matthew sanii
 * @version 1.0
@@ -13,6 +13,36 @@ import java.util.Scanner;
 */
 
 final class Microwave {
+    /**
+    * Variables used for microwave time.
+    * Used to show values for code.
+    */
+    static final int SLOW = 105;
+    /**
+    * Variable 2.
+    */
+    static final int FAST = 45;
+    /**
+    * Variable 3.
+    */
+    static final int MEDIUM = 60;
+    /**
+    * Variable 4.
+    */
+    static final int MIN = 1;
+    /**
+    * Variable 5.
+    */
+    static final int MED = 1.5;
+    /**
+    * Variable 6.
+    */
+    static final int MAX = 2;
+    /**
+    * Variable 7.
+    */
+    static final int MAXI = 3;
+
     /**
     * Prevent instantiation.
     * Throw an exception IllegalStateException.
@@ -39,46 +69,46 @@ final class Microwave {
         double heat = 0;
         System.out.print("What are you microwaving(soup, pizza, or sub)? ");
 
-        String choice = food.nextLine();
-        if (choice.toLowerCase().equals("soup") || choice.toLowerCase().equals("pizza") || choice.toLowerCase().equals("sub")) {
-            System.out.print("How many " + choice.toLowerCase() + " are you cooking?(max 3) "); 
-            int amount = food.nextInt();
-            if (amount > 3) {
-                System.out.println("Must be 3 or less.");
-            }
-            else if (amount < 1) {
-                System.out.println("Must be greater than 1.");
-            }
-            else {
-                if (choice.toLowerCase().equals("soup")) {
-                    time = 105;
-                }
-                else if (choice.toLowerCase().equals("pizza")) {
-                    time = 45;
-                }
-                else {
-                    time = 60;
-                }
-                if (amount == 2) {
-                    heat = 1.5;
-                }
-                else if (amount == 3) {
-                    heat = 2;
-                }
-                else {
-                    heat = 1;
-                }
-                double cooking = heat * time;
-                while (cooking > 60){
-                minutes = minutes + 1;
-                cooking = cooking - 60;
-}
-                System.out.println("it will take " + minutes + " minutes and " + cooking + " seconds to cook " + amount + " " + choice.toLowerCase() + "(s).");
-            }
-            }
+        final String choice = food.nextLine();
+        if (choice.toLowerCase().equals("soup")) {
+            time = time + SLOW;
+        }
+        else if (choice.toLowerCase().equals("pizza")) {
+            time = time + MEDIUM;
+        }
+        else if (choice.toLowerCase().equals("sub")) {
+            time = time + FAST;
+        }
         else {
             System.out.println("that isn't a viable option.");
         }
+        System.out.print("How many " + choice.toLowerCase() + " are you cooking?(max 3) ");
+        final int amount = food.nextInt();
+        if (amount > MAXI) {
+            System.out.println("Must be 3 or less.");
+        }
+        else if (amount < 1) {
+            System.out.println("Must be greater than 1.");
+        }
+        else {
+            if (amount == MAX) {
+                heat = heat + MED;
+            }
+            else if (amount == MAXI) {
+                heat = heat + MAX;
+            }
+            else {
+                heat = heat + MIN;
+            }
+            double cooking = heat * time;
+
+            while (cooking > MEDIUM) {
+                minutes = minutes + MIN;
+                cooking = cooking - MEDIUM;
+            }
+            System.out.println("it will take " + minutes + " minutes and " + cooking
+                + " seconds to cook " + amount + " " + choice.toLowerCase() + "(s).");
+        }
         System.out.println("\nDone.");
-}
+    }
 }
